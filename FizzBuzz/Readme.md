@@ -4,7 +4,7 @@ Write a program that prints the numbers from 1 to 100. But for multiples of thre
 
 ## Setup
 
-If you don't already have gradle installed, use:
+The git repo contains a sample implementation, but the fun is in the process. Start with an empty directory and build the FizzBuzz app. You will need to have gradle installed in order to init the project, if you don't already have gradle installed, use:
 
 `brew install gradle`
 
@@ -16,6 +16,16 @@ Visit [https://brew.sh/](https://brew.sh) to install brew.
 mkdir FizzBuzz
 cd FizzBuzz
 gradle init
+```
+
+#### Modify build.gradle to run the app
+
+Add the following to your build.gradle:
+
+```
+apply plugin: 'application'
+
+mainClassName = "FizzBuzz"
 ```
 
 #### Create the directory structure for the project and test source classes, and create the empty classes
