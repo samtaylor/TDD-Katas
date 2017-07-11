@@ -127,4 +127,12 @@ public class CalculatorDisplayShould
 
         assertThat( this.testDisplay.getValue(), is( 4.26f ) );
     }
+
+    @Test
+    public void notDisplayTheDecimal_whenTheDecimalIsZero()
+    {
+        this.testDisplay.setValue( 3.0f );
+
+        assertThat( this.testDisplay.getText().toString(), is( "3" ) );
+    }
 }

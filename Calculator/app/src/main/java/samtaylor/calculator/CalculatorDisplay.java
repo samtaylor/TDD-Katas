@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 public class CalculatorDisplay extends TextView implements Display
 {
     private boolean resetPending;
@@ -82,7 +84,7 @@ public class CalculatorDisplay extends TextView implements Display
     @Override
     public void setValue( float value )
     {
-        this.setText( "" + value );
+        this.setText( this.format( value ) );
     }
 
     @Override
@@ -94,5 +96,17 @@ public class CalculatorDisplay extends TextView implements Display
     private void init()
     {
         this.setText( "0" );
+    }
+
+    private String format( float value )
+    {
+        if ( value == ( int )value )
+        {
+            return String.format( Locale.ENGLISH, "%d", ( int )value );
+        }
+        else
+        {
+            return String.format( Locale.ENGLISH, "%s", value );
+        }
     }
 }

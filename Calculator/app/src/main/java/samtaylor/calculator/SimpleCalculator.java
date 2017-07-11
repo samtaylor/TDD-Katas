@@ -24,6 +24,7 @@ class SimpleCalculator implements Calculator
     public float equals( float number )
     {
         this.performAction( number );
+        this.currentAction = null;
 
         return this.currentValue;
     }
