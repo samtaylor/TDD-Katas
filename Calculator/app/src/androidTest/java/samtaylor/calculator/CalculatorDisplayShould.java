@@ -108,4 +108,23 @@ public class CalculatorDisplayShould
 
         assertThat( this.testDisplay.getText().toString(), is( "0.3" ) );
     }
+
+    @Test
+    public void updateTheTextView_whenSetValueIsCalled()
+    {
+        this.testDisplay.setValue( 4.3768f );
+
+        assertThat( this.testDisplay.getText().toString(), is( "4.3768" ) );
+    }
+
+    @Test
+    public void returnTheCorrectValue_whenGetValueIsCalled()
+    {
+        this.testDisplay.append( 4 );
+        this.testDisplay.addDecimal();
+        this.testDisplay.append( 2 );
+        this.testDisplay.append( 6 );
+
+        assertThat( this.testDisplay.getValue(), is( 4.26f ) );
+    }
 }

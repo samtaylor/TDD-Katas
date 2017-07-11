@@ -26,6 +26,7 @@ public class MainPresenterShould
     private CapturingButton multiplyButton;
     private CapturingButton divideButton;
     private CapturingDisplay display;
+    private CapturingCalculator calculator;
 
     @Before
     public void setup()
@@ -47,6 +48,7 @@ public class MainPresenterShould
         this.multiplyButton = new CapturingButton();
         this.divideButton = new CapturingButton();
         this.display = new CapturingDisplay();
+        this.calculator = new CapturingCalculator();
 
         new MainPresenter( this.zeroButton,
                            this.oneButton,
@@ -64,7 +66,8 @@ public class MainPresenterShould
                            this.minusButton,
                            this.multiplyButton,
                            this.divideButton,
-                           this.display );
+                           this.display,
+                           this.calculator );
     }
 
     @Test
@@ -208,6 +211,58 @@ public class MainPresenterShould
         assertThat( this.display.resetPendingInvoked, is( true ) );
     }
 
+    @Test
+    public void passTheCorrectValueToCalculator_whenAddButtonIsPressed()
+    {
+        this.plusButton.click();
+
+        assertThat( this.calculator.setInvokedWithAction, is( Calculator.Action.PLUS ) );
+        assertThat( this.calculator.setInvokedWithNumber, is( 1.234f ) );
+    }
+
+    @Test
+    public void passTheCorrectValueToCalculator_whenMinusButtonIsPressed()
+    {
+        this.minusButton.click();
+
+        assertThat( this.calculator.setInvokedWithAction, is( Calculator.Action.MINUS ) );
+        assertThat( this.calculator.setInvokedWithNumber, is( 1.234f ) );
+    }
+
+    @Test
+    public void passTheCorrectValueToCalculator_whenMultiplyButtonIsPressed()
+    {
+        this.multiplyButton.click();
+
+        assertThat( this.calculator.setInvokedWithAction, is( Calculator.Action.MULTIPLY ) );
+        assertThat( this.calculator.setInvokedWithNumber, is( 1.234f ) );
+    }
+
+    @Test
+    public void passTheCorrectValueToCalculator_whenDivideButtonIsPressed()
+    {
+        this.divideButton.click();
+
+        assertThat( this.calculator.setInvokedWithAction, is( Calculator.Action.DIVIDE ) );
+        assertThat( this.calculator.setInvokedWithNumber, is( 1.234f ) );
+    }
+
+    @Test
+    public void passTheCorrectValueToCalculator_whenEqualsButtonIsPressed()
+    {
+        this.equalsButton.click();
+
+        assertThat( this.calculator.equalsInvokedWithNumber, is( 1.234f ) );
+    }
+
+    @Test
+    public void displayIsGivenResultFromCalculator_whenEqualsButtonIsPressed()
+    {
+        this.equalsButton.click();
+
+        assertThat( this.display.setValueInvokedWithValue, is( 6.789f ) );
+    }
+
     private static class CapturingButton implements Button
     {
         private boolean setOnClickInvoked;
@@ -231,6 +286,7 @@ public class MainPresenterShould
         private int appendInvokedWithNumber = -1;
         private boolean addDecimalInvoked = false;
         private boolean resetPendingInvoked;
+        private float setValueInvokedWithValue;
 
         @Override
         public void append( int number )
@@ -248,6 +304,39 @@ public class MainPresenterShould
         public void resetPending()
         {
             this.resetPendingInvoked = true;
+        }
+
+        @Override
+        public void setValue( float value )
+        {
+            this.setValueInvokedWithValue = value;
+        }
+
+        @Override
+        public float getValue()
+        {
+            return 1.234f;
+        }
+    }
+
+    private static class CapturingCalculator implements Calculator
+    {
+        private Action setInvokedWithAction;
+        private float setInvokedWithNumber;
+        private float equalsInvokedWithNumber;
+
+        @Override
+        public void set( float number, Action action )
+        {
+            this.setInvokedWithNumber = number;
+            this.setInvokedWithAction = action;
+        }
+
+        @Override
+        public float equals( float number )
+        {
+            this.equalsInvokedWithNumber = number;
+            return 6.789f;
         }
     }
 }

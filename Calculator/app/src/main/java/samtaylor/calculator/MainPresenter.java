@@ -2,23 +2,24 @@ package samtaylor.calculator;
 
 public class MainPresenter
 {
-    public MainPresenter( Button zeroButton,
-                          Button oneButton,
-                          Button twoButton,
-                          Button threeButton,
-                          Button fourButton,
-                          Button fiveButton,
-                          Button sixButton,
-                          Button sevenButton,
-                          Button eightButton,
-                          Button nineButton,
-                          Button pointButton,
-                          Button equalsButton,
-                          Button plusButton,
-                          Button minusButton,
-                          Button multiplyButton,
-                          Button divideButton,
-                          final Display display )
+    public MainPresenter( final Button zeroButton,
+                          final Button oneButton,
+                          final Button twoButton,
+                          final Button threeButton,
+                          final Button fourButton,
+                          final Button fiveButton,
+                          final Button sixButton,
+                          final Button sevenButton,
+                          final Button eightButton,
+                          final Button nineButton,
+                          final Button pointButton,
+                          final Button equalsButton,
+                          final Button plusButton,
+                          final Button minusButton,
+                          final Button multiplyButton,
+                          final Button divideButton,
+                          final Display display,
+                          final Calculator calculator )
     {
         zeroButton.setOnClick( new Button.OnClick()
         {
@@ -124,7 +125,7 @@ public class MainPresenter
             @Override
             public void onClick()
             {
-
+                display.setValue( calculator.equals( display.getValue() ) );
             }
         } );
 
@@ -133,6 +134,8 @@ public class MainPresenter
             @Override
             public void onClick()
             {
+                calculator.set( display.getValue(), Calculator.Action.PLUS );
+
                 display.resetPending();
             }
         } );
@@ -142,6 +145,8 @@ public class MainPresenter
             @Override
             public void onClick()
             {
+                calculator.set( display.getValue(), Calculator.Action.MINUS );
+
                 display.resetPending();
             }
         } );
@@ -151,6 +156,8 @@ public class MainPresenter
             @Override
             public void onClick()
             {
+                calculator.set( display.getValue(), Calculator.Action.MULTIPLY );
+
                 display.resetPending();
             }
         } );
@@ -160,6 +167,8 @@ public class MainPresenter
             @Override
             public void onClick()
             {
+                calculator.set( display.getValue(), Calculator.Action.DIVIDE );
+
                 display.resetPending();
             }
         } );

@@ -79,6 +79,18 @@ public class CalculatorDisplay extends TextView implements Display
         this.resetPending = true;
     }
 
+    @Override
+    public void setValue( float value )
+    {
+        this.setText( "" + value );
+    }
+
+    @Override
+    public float getValue()
+    {
+        return Float.parseFloat( this.getText().toString() );
+    }
+
     private void init()
     {
         this.setText( "0" );
