@@ -29,19 +29,6 @@ public class MainActivity extends Activity
                 ( CalculatorButton ) this.findViewById( R.id.button_multiply ),
                 ( CalculatorButton ) this.findViewById( R.id.button_divide ),
                 ( CalculatorDisplay ) this.findViewById( R.id.result_text ),
-                new Calculator()
-                {
-                    @Override
-                    public void set( float number, Action action )
-                    {
-
-                    }
-
-                    @Override
-                    public float equals( float number )
-                    {
-                        return 0;
-                    }
-                } );
+                new SimpleCalculator() );
     }
 }
