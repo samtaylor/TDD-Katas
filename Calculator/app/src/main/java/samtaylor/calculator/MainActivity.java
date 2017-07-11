@@ -28,6 +28,6 @@ public class MainActivity extends Activity
                            ( CalculatorButton )this.findViewById( R.id.button_minus ),
                            ( CalculatorButton )this.findViewById( R.id.button_multiply ),
                            ( CalculatorButton )this.findViewById( R.id.button_divide ),
-                           ( CalculatorText )this.findViewById( R.id.result_text ) );
+                           ( CalculatorDisplay )this.findViewById( R.id.result_text ) );
     }
 }

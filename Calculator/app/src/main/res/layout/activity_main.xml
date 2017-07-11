@@ -7,12 +7,12 @@
     android:layout_height="match_parent"
     tools:context="samtaylor.calculator.MainActivity">
 
-    <samtaylor.calculator.CalculatorText
+    <samtaylor.calculator.CalculatorDisplay
         android:id="@+id/result_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/result_text_size"
-        tools:text="0000"
+        tools:display="0000"
         android:text="0"
         android:textAlignment="textEnd"
         android:padding="8dp"/>

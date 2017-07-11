@@ -27,8 +27,15 @@ public class CalculatorButton extends android.widget.Button implements Button
     }
 
     @Override
-    public void setOnClick( OnClick onClick )
+    public void setOnClick( final OnClick onClick )
     {
-
+        this.setOnClickListener( new OnClickListener()
+        {
+            @Override
+            public void onClick( View view )
+            {
+                onClick.onClick();
+            }
+        } );
     }
 }
