@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/result_text_size"
-        tools:display="0000"
-        android:text="0"
+        tools:text="0000"
         android:textAlignment="textEnd"
         android:padding="8dp"/>
 

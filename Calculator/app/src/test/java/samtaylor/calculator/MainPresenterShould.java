@@ -168,6 +168,14 @@ public class MainPresenterShould
         assertThat( this.display.appendInvokedWithNumber, is( 9 ) );
     }
 
+    @Test
+    public void addDecimalToTheDisplay_whenThePointButtonIsPressed()
+    {
+        this.pointButton.click();
+
+        assertThat( this.display.addDecimalInvoked, is( true ) );
+    }
+
     private static class CapturingButton implements Button
     {
         private boolean setOnClickInvoked;
@@ -189,11 +197,18 @@ public class MainPresenterShould
     private static class CapturingDisplay implements Display
     {
         private int appendInvokedWithNumber = -1;
+        public boolean addDecimalInvoked = false;
 
         @Override
         public void append( int number )
         {
             this.appendInvokedWithNumber = number;
+        }
+
+        @Override
+        public void addDecimal()
+        {
+            this.addDecimalInvoked = true;
         }
     }
 }

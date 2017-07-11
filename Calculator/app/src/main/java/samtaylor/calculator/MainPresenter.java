@@ -115,7 +115,7 @@ public class MainPresenter
             @Override
             public void onClick()
             {
-
+                display.addDecimal();
             }
         } );
 
