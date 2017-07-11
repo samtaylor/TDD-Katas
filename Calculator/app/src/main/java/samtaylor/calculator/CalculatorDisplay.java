@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 public class CalculatorDisplay extends TextView implements Display
 {
+    private boolean resetPending;
+
     public CalculatorDisplay( Context context )
     {
         super( context );
@@ -33,26 +35,48 @@ public class CalculatorDisplay extends TextView implements Display
     @Override
     public void append( int number )
     {
-        if ( this.getText().equals( "0" ) )
+        if ( this.resetPending )
         {
-            if ( number != 0 )
-            {
-                this.setText( "" + number );
-            }
+            this.setText( "" + number );
+            this.resetPending = false;
         }
         else
         {
-            this.setText( this.getText() + "" + number );
+            if ( this.getText().equals( "0" ) || this.resetPending )
+            {
+                if ( number != 0 || this.resetPending )
+                {
+                    this.setText( "" + number );
+                }
+            }
+            else
+            {
+                this.setText( this.getText() + "" + number );
+            }
         }
     }
 
     @Override
     public void addDecimal()
     {
-        if ( !this.getText().toString().contains( "." ) )
+        if ( this.resetPending )
         {
-            this.setText( this.getText() + "." );
+            this.setText( "0." );
+            this.resetPending = false;
         }
+        else
+        {
+            if ( !this.getText().toString().contains( "." ) )
+            {
+                this.setText( this.getText() + "." );
+            }
+        }
+    }
+
+    @Override
+    public void resetPending()
+    {
+        this.resetPending = true;
     }
 
     private void init()

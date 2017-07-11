@@ -5,4 +5,6 @@ interface Display
     void append( int number );
 
     void addDecimal();
+
+    void resetPending();
 }

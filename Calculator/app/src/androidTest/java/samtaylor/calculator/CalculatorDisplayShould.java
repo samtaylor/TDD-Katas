@@ -73,4 +73,39 @@ public class CalculatorDisplayShould
 
         assertThat( this.testDisplay.getText().toString(), is( "4.7" ) );
     }
+
+    @Test
+    public void startANewNumber_whenResetPendingIsCalled()
+    {
+        this.testDisplay.append( 3 );
+        this.testDisplay.append( 2 );
+        this.testDisplay.resetPending();
+        this.testDisplay.append( 1 );
+        this.testDisplay.append( 7 );
+
+        assertThat( this.testDisplay.getText().toString(), is( "17" ) );
+    }
+
+    @Test
+    public void startANewDecimalNumber_whenResetPendingIsCalled()
+    {
+        this.testDisplay.append( 9 );
+        this.testDisplay.resetPending();
+        this.testDisplay.append( 0 );
+        this.testDisplay.addDecimal();
+        this.testDisplay.append( 1 );
+
+        assertThat( this.testDisplay.getText().toString(), is( "0.1" ) );
+    }
+
+    @Test
+    public void startANewDecimalNumber_whenResetPendingIsCalled_andTheDecimalStartsWithThePoint()
+    {
+        this.testDisplay.append( 4 );
+        this.testDisplay.resetPending();
+        this.testDisplay.addDecimal();
+        this.testDisplay.append( 3 );
+
+        assertThat( this.testDisplay.getText().toString(), is( "0.3" ) );
+    }
 }

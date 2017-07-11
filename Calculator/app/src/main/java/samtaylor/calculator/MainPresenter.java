@@ -133,7 +133,7 @@ public class MainPresenter
             @Override
             public void onClick()
             {
-
+                display.resetPending();
             }
         } );
 
@@ -142,7 +142,7 @@ public class MainPresenter
             @Override
             public void onClick()
             {
-
+                display.resetPending();
             }
         } );
 
@@ -151,7 +151,7 @@ public class MainPresenter
             @Override
             public void onClick()
             {
-
+                display.resetPending();
             }
         } );
 
@@ -160,7 +160,7 @@ public class MainPresenter
             @Override
             public void onClick()
             {
-
+                display.resetPending();
             }
         } );
     }

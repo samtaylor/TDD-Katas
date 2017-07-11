@@ -176,6 +176,38 @@ public class MainPresenterShould
         assertThat( this.display.addDecimalInvoked, is( true ) );
     }
 
+    @Test
+    public void tellTheDisplayAResetIsPending_whenThePlusButtonIsPressed()
+    {
+        this.plusButton.click();
+
+        assertThat( this.display.resetPendingInvoked, is( true ) );
+    }
+
+    @Test
+    public void tellTheDisplayAResetIsPending_whenTheMinusButtonIsPressed()
+    {
+        this.minusButton.click();
+
+        assertThat( this.display.resetPendingInvoked, is( true ) );
+    }
+
+    @Test
+    public void tellTheDisplayAResetIsPending_whenTheMultiplyButtonIsPressed()
+    {
+        this.multiplyButton.click();
+
+        assertThat( this.display.resetPendingInvoked, is( true ) );
+    }
+
+    @Test
+    public void tellTheDisplayAResetIsPending_whenTheDivideButtonIsPressed()
+    {
+        this.divideButton.click();
+
+        assertThat( this.display.resetPendingInvoked, is( true ) );
+    }
+
     private static class CapturingButton implements Button
     {
         private boolean setOnClickInvoked;
@@ -197,7 +229,8 @@ public class MainPresenterShould
     private static class CapturingDisplay implements Display
     {
         private int appendInvokedWithNumber = -1;
-        public boolean addDecimalInvoked = false;
+        private boolean addDecimalInvoked = false;
+        private boolean resetPendingInvoked;
 
         @Override
         public void append( int number )
@@ -209,6 +242,12 @@ public class MainPresenterShould
         public void addDecimal()
         {
             this.addDecimalInvoked = true;
+        }
+
+        @Override
+        public void resetPending()
+        {
+            this.resetPendingInvoked = true;
         }
     }
 }
